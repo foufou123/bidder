@@ -11,19 +11,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221155626) do
+ActiveRecord::Schema.define(version: 20150729115000) do
 
-  create_table "jobs", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "phone"
-    t.string   "location"
-    t.string   "zipcode"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "bids", force: :cascade do |t|
+    t.integer  "job_id",     null: false
+    t.integer  "user_id",    null: false
+    t.integer  "price",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: true do |t|
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "contactable_id"
+    t.string   "contactable_type"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country",             default: "United States"
+    t.string   "postal"
+    t.boolean  "show_email",          default: false
+    t.boolean  "show_phone",          default: false
+    t.boolean  "show_street_address", default: false
+    t.string   "country_code",        default: "us"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "contacts", ["contactable_type", "contactable_id"], name: "index_contacts_on_contactable_type_and_contactable_id", using: :btree
+
+  create_table "contractors", force: :cascade do |t|
+    t.integer  "user_id",           null: false
+    t.string   "organization_type", null: false
+    t.string   "organization_name", null: false
+    t.text     "summary",           null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "contracts", force: :cascade do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "job_id",      null: false
+    t.integer  "bid_id",      null: false
+    t.integer  "binding_bid", null: false
+    t.string   "conditions"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "type",        null: false
+    t.text     "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -32,13 +80,15 @@ ActiveRecord::Schema.define(version: 20150221155626) do
     t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "provider"
+    t.string   "uid"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

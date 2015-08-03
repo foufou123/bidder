@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
@@ -5,24 +6,14 @@
 </p>
 
 <p>
+  <strong>Type:</strong>
+  <%= @job.type %>
+</p>
+
+<p>
   <strong>Description:</strong>
   <%= @job.description %>
 </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @job.phone %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @job.location %>
-</p>
-
-<p>
-  <strong>Zipcode:</strong>
-  <%= @job.zipcode %>
-</p>
-
-<%= link_to 'Edit', edit_job_path(@job), class: "btn btn-link" %> |
-<%= link_to 'Back', jobs_path, class: "btn btn-link" %>
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %>

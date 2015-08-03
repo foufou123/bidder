@@ -4,7 +4,13 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
-    @jobs = Job.all
+    if params[:search].blank?
+      @jobs = Job.order(:created_at :desc).page params[:page]
+    else
+      @jobs = Job.where("type ILIKE ?", "%#{params[:search]}%")
+                 .order(created_at: :desc)
+                 .page params[:page]
+    end
   end
 
   # GET /jobs/1
@@ -69,6 +75,6 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:name, :description, :phone, :location, :zipcode)
+      params.require(:job).permit(:name, :type, :description)
     end
 end

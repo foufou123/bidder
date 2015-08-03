@@ -11,27 +11,19 @@
     </div>
   <% end %>
 
-  <div class="form-group">
+  <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name, class: "form-control" %>
+    <%= f.text_field :name %>
   </div>
-  <div class="form-group">
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :location %><br>
-    <%= f.text_field :location, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :zipcode %><br>
-    <%= f.text_field :zipcode, class: "form-control" %>
+    <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <%= f.submit class: "btn btn-primary"  %>
+    <%= f.submit %>
   </div>
 <% end %>
