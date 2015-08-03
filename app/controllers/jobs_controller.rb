@@ -5,7 +5,7 @@ class JobsController < ApplicationController
   # GET /jobs.json
   def index
     if params[:search].blank?
-      @jobs = Job.order(:created_at :desc).page params[:page]
+      @jobs = Job.order(:created_at, :desc).page params[:page]
     else
       @jobs = Job.where("type ILIKE ?", "%#{params[:search]}%")
                  .order(created_at: :desc)
