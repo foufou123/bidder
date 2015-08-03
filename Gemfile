@@ -21,6 +21,7 @@ gem 'omniauth-github'
 gem 'kaminari'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
   gem 'byebug'
   gem 'pry'
   gem 'pry-byebug'
