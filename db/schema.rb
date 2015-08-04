@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729115000) do
+ActiveRecord::Schema.define(version: 20150804145806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bids", force: :cascade do |t|
-    t.integer  "job_id",     null: false
-    t.integer  "user_id",    null: false
-    t.integer  "price",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "job_id"
+    t.integer  "user_id"
+    t.integer  "price",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "contract_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -54,13 +55,12 @@ ActiveRecord::Schema.define(version: 20150729115000) do
   end
 
   create_table "contracts", force: :cascade do |t|
-    t.integer  "user_id",     null: false
-    t.integer  "job_id",      null: false
-    t.integer  "bid_id",      null: false
-    t.integer  "binding_bid", null: false
+    t.integer  "user_id",      null: false
+    t.integer  "job_id",       null: false
     t.string   "conditions"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "stipulations"
   end
 
   create_table "jobs", force: :cascade do |t|
