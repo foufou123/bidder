@@ -5,6 +5,6 @@ class Interest < ActiveRecord::Base
 
   validates_presence_of   :contractor
   validates_presence_of   :job
-  validates_uniqueness_of :contractor, -> { where.(job: job) }
-  validates_uniqueness_of :job,        -> { where.(contractor: contractor) }
+  validates_uniqueness_of :contractor, scope: :job_id
+  validates_uniqueness_of :job,        scope: :contractor_id
 end
