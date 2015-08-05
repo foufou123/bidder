@@ -5,17 +5,18 @@
 
     factory :job_creator do
       email "mycabinetsneedfixing@example.com"
-      password "password"
     end
 
     factory :contractor_user do
       email "contractor1user@example.com"
-      password "password"
     end
 
     factory :competitor_user do
       email "contractor2user@example.com"
-      password "password"
+    end
+
+    factory :another_job_creator do
+      email "ineedpoolinstallation@example.com"
     end
   end
 
@@ -35,11 +36,31 @@
     end
   end
 
-  factory :cabinet_job, class: Job do
-    user factory: :job_creator
-    name "Kitchen Cabinets"
-    category "Cabinetry"
-    description "Install Custom Kitchen Cabinets"
+  factory :job do
+    factory :cabinet_job do
+      user factory: :job_creator
+      name "Kitchen Cabinets"
+      category "Cabinetry"
+      description "Install Custom Kitchen Cabinets"
+    end
+
+    factory :another_cabinet_job do
+      user factory: :another_job_creator
+      name "Fix Cabinets"
+      category "Cabinetry"
+      description "Fix existing Cabinets"
+    end
   end
 
+  factory :interest do
+    job factory: :cabinet_job
+
+    factory :good_interest do
+      contractor factory: :good_contractor
+    end
+
+    factory :competitor_interest do
+      contractor factory: :competitor_contractor
+    end
+  end
 end
