@@ -8,7 +8,7 @@ RSpec.describe Job, type: :model do
   let(:contractor2) { FactoryGirl.create(:competitor_contractor) }
   let(:cabinet_job) { FactoryGirl.create(:cabinet_job) }
 
-  it "should create a job" do
+  it "should be valid" do
     job = user1.jobs.build(name: "Need Custom Cabinets", category: "Cabinetry", description: "Custom built kitchen cabinets")
     expect(job).to be_an_instance_of Job
     expect(job).to be_valid
@@ -16,7 +16,7 @@ RSpec.describe Job, type: :model do
     expect(user1.jobs.first.name).to eql "Need Custom Cabinets"
   end
 
-  it "should create Job from Factory" do
+  it "is created from Factory" do
     expect(cabinet_job).to be_an_instance_of Job
     expect(cabinet_job.user.email).to eql "mycabinetsneedfixing@example.com"
   end
@@ -31,7 +31,7 @@ RSpec.describe Job, type: :model do
     expect(contractor1.interests.first.job).to eql cabinet_job
   end
 
-  describe "self.bids.first#winner!" do
+  describe "#bids.first#winner!" do
     it "should create a Contract between User's Job and Contractor" do
       job_creator = cabinet_job.user
       interest = cabinet_job.interests.create(contractor: contractor1)
