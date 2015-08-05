@@ -21,12 +21,19 @@ gem 'omniauth-github'
 gem 'kaminari'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
   gem 'byebug'
   gem 'pry'
   gem 'pry-byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'faker'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end
 
 ##
