@@ -1,7 +1,8 @@
 class Job < ActiveRecord::Base
   belongs_to :user
+  has_many   :interests
   belongs_to :contractor
-  has_many   :bids
+  has_many   :bids, through: :interests
   has_one    :contract
   has_one    :contact, as: :contactable
 

@@ -1,17 +1,18 @@
 class Bid < ActiveRecord::Base
-  belongs_to :job
-  belongs_to :contractor
+  belongs_to :interest
   belongs_to :contract
-    # Job and Contractor will loose possession of Bid
-    # and Bid will be in possession of Contract
-    # once it has changed status to Winning Bid
 
+  validates_presence_of :interest
 
   def self.lowest_bid
     order(:price).limit(1).first
   end
 
-  def is_winning_bid?
-    !contract.null? && job.null? && contractor.null?
+  def winning_bid?
+    !contract.null?
+  end
+
+  def winner!
+    interest.job.build_contract(contractor: interest.contractor).save
   end
 end
