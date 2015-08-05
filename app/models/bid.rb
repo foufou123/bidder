@@ -9,7 +9,7 @@ class Bid < ActiveRecord::Base
   end
 
   def winning_bid?
-    !contract.null?
+    #!contract.null? TODO: Change this
   end
 
   def winner!
