@@ -11,18 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804145806) do
+ActiveRecord::Schema.define(version: 20150805174728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bids", force: :cascade do |t|
-    t.integer  "job_id"
-    t.integer  "user_id"
     t.integer  "price",       null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "contract_id"
+    t.integer  "interest_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -55,20 +54,28 @@ ActiveRecord::Schema.define(version: 20150804145806) do
   end
 
   create_table "contracts", force: :cascade do |t|
-    t.integer  "user_id",      null: false
-    t.integer  "job_id",       null: false
+    t.integer  "job_id",        null: false
     t.string   "conditions"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.text     "stipulations"
+    t.integer  "contractor_id", null: false
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.integer  "contractor_id", null: false
+    t.integer  "job_id",        null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "jobs", force: :cascade do |t|
     t.string   "name",        null: false
-    t.string   "type",        null: false
+    t.string   "category",    null: false
     t.text     "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id",     null: false
   end
 
   create_table "users", force: :cascade do |t|
