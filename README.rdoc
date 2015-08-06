@@ -8,7 +8,8 @@ Created:
         Builds Contact upon creation. May create Job. May create one Contractor profile
 
       Job:
-        Builds Contact upon creation. Has many Interests between Contractors. Many Bids through Interests
+        Builds Contact upon creation. Has many Interests between Contractors.
+        Many Bids through Interests
         Belongs to Contractor's Portfolio once Job is complete
 
       Contractor:
@@ -24,7 +25,8 @@ Created:
 
       Portfolio
         Belongs to Contractor.
-        Has many Jobs (completed Jobs through Bidder). Has many Showcases (Jobs outside of Bidder.. NOT YET implemented)
+        Has many Jobs (completed Jobs through Bidder).
+        Has many Showcases (Jobs outside of Bidder.. NOT YET implemented)
 
       Contract:
         Belongs to Job and Contractor. Has one Bid (winning bid).
@@ -34,7 +36,8 @@ Created:
         Has many Skills
 
       Skill:
-        Belongs to SkillTag and SkillSet. Describes the SkillTag name, years with that experience and proficiency.
+        Belongs to SkillTag and SkillSet.
+        Describes the SkillTag name, years with that experience and proficiency.
 
       SkillSet:
         Belongs to Contractor. Has many Skills.
@@ -52,7 +55,8 @@ Created:
     
     3. Routes are not ready yet.
     
-    4. Scaffolds generated for much of the models and some only have models generated without scaffold (controllers, views, assets, etc).
+    4. Scaffolds generated for much of the models.
+       Some only have models generated without scaffold (controllers, views, assets, etc).
 
     5. secrets.yml and database.yml done differently.
        - Follow secrets_example.yml in config directory.
