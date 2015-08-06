@@ -63,4 +63,22 @@
       contractor factory: :competitor_contractor
     end
   end
+
+  factory :skill_tag do
+    factory :cabinetry_tag do
+      name 'Cabinetry'
+    end
+
+    factory :pool_installation_tag do
+      name 'Pool Installation'
+    end
+
+    factory :table_saw_tag do
+      name 'Table Saw'
+    end
+
+    factory :staining_tag do
+      name 'Staining'
+    end
+  end
 end

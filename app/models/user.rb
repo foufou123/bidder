@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  after_create :build_defaults
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,5 +19,10 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
     end
+  end
+
+private
+  def build_defaults
+    build_contact.save
   end
 end

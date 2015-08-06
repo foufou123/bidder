@@ -1,4 +1,6 @@
 class Job < ActiveRecord::Base
+  after_create :build_defaults
+
   belongs_to :user
   has_many   :interests
   belongs_to :contractor
@@ -15,5 +17,10 @@ class Job < ActiveRecord::Base
   def completed!
     update_attributes(completed: true, portfolio: contract.contractor.portfolio)
     #TODO: payments??
+  end
+
+private
+  def build_defaults
+    build_contact.save
   end
 end

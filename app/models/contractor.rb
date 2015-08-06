@@ -1,5 +1,5 @@
 class Contractor < ActiveRecord::Base
-  after_create :create_contractor_defaults
+  after_create :create_defaults
 
   belongs_to :user
   has_many   :interests
@@ -8,9 +8,12 @@ class Contractor < ActiveRecord::Base
   has_many   :jobs, through: :contracts
   has_one    :contact, as: :contactable
   has_one    :portfolio
+  has_one    :skill_set
 
 private
-  def create_contractor_defaults
+  def create_defaults
+    build_contact.save
+    build_skill_set.save
     build_portfolio.save
   end
 end
