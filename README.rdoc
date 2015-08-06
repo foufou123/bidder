@@ -1,28 +1,66 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Created:
 
-Things you may want to cover:
+    1. Model Assocations for:
 
-* Ruby version
+      User:
+        Builds Contact upon creation. May create Job. May create one Contractor profile
 
-* System dependencies
+      Job:
+        Builds Contact upon creation. Has many Interests between Contractors. Many Bids through Interests
+        Belongs to Contractor's Portfolio once Job is complete
 
-* Configuration
+      Contractor:
+        Builds Contact, SkillSet and Portfolio upon creation.
+        Has many Interests. Has many Bids on Jobs through Interests.
 
-* Database creation
+      Interest:
+        Belongs to Contractor and Job. Has many Bids between it's Contractor and it's Job
 
-* Database initialization
+      Bid:
+        Belongs to Interest.
+        Creates Contract when User (employer) accepts Bid with #winner! method
 
-* How to run the test suite
+      Portfolio
+        Belongs to Contractor.
+        Has many Jobs (completed Jobs through Bidder). Has many Showcases (Jobs outside of Bidder.. NOT YET implemented)
 
-* Services (job queues, cache servers, search engines, etc.)
+      Contract:
+        Belongs to Job and Contractor. Has one Bid (winning bid).
 
-* Deployment instructions
+      SkillTag:
+        Doesn't belong to anyting yet. Not sure yet how these will be created.
+        Has many Skills
 
-* ...
+      Skill:
+        Belongs to SkillTag and SkillSet. Describes the SkillTag name, years with that experience and proficiency.
+
+      SkillSet:
+        Belongs to Contractor. Has many Skills.
+
+      Contact:
+        Polymorhpic. Belongs to Contactable.
+        Belongs to either User, Job or Contractor. Possibly Showcase when it is developed.
+        TODO:
+          This has not been developed out yet.
+          Needs Location models, Phone models and/or Address models, etc.
 
 
-Please feel free to use a different markup language if you do not plan to run
+    2. Specs create for each model. Other specs (non-models) have been gererated by not completed.
+       - When running specs run `rspec spec/models/` only for now.
+    
+    3. Routes are not ready yet.
+    
+    4. Scaffolds generated for much of the models and some only have models generated without scaffold (controllers, views, assets, etc).
+
+    5. secrets.yml and database.yml done differently.
+       - Follow secrets_example.yml in config directory.
+
+    6. Omniauth has been set up but currently without the Socail API keys.
+
+    7. Heroku may need to be added back in.
+
+
+
 <tt>rake doc:app</tt>.
